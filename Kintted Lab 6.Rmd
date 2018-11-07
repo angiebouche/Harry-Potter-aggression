@@ -1,0 +1,36 @@
+---
+title: "Lab 6"
+author: "Angie Bouche"
+date: "November 7, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+###Part 1 loadtidyverse and read in data
+
+```{r}
+library(tidyverse)
+
+hp_data <- read.csv("harry_potter_aggression_full.csv")
+
+```
+
+```{r}
+hp_graph <- hp_data %>% 
+  filter(Name == "Harry" | Name == "Draco Malfoy") %>% 
+  select(Name, book, agg.per.mention) %>% 
+  ggplot(aes(x=book, y = agg.per.mention))+
+  geom_col(aes(fill=Name), position = "dodge")+
+  coord_flip()+
+  theme_bw()+
+  labs(x= "Book", y = "Aggression Rate")
+  
+hp_graph  
+
+```
+
+Here's my unique sentance!!
